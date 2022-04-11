@@ -1,11 +1,11 @@
 class Graph:
     def __init__(self, vertices, is_directed=False):
-        self.nodes = vertices
+        self.vertices = vertices
         self.adj_list = {}
         self.is_directed = is_directed
 
-        for node in self.nodes:
-            self.adj_list[node] = set([])
+        for vertex in self.vertices:
+            self.adj_list[vertex] = set([])
 
     def add_edge(self, source, destination):
         self.adj_list[source].add(destination)
@@ -13,7 +13,7 @@ class Graph:
             self.adj_list[destination].add(source)
 
     def print_adj_list(self):
-        for vertex in self.nodes:
+        for vertex in self.vertices:
             print(vertex, ":", self.adj_list[vertex])
 
 
