@@ -5,12 +5,12 @@ class Graph:
         self.is_directed = is_directed
 
         for vertex in self.vertices:
-            self.adj_list[vertex] = set([])
+            self.adj_list[vertex] = []
 
     def add_edge(self, source, destination):
-        self.adj_list[source].add(destination)
+        self.adj_list[source].append(destination)
         if not self.is_directed:
-            self.adj_list[destination].add(source)
+            self.adj_list[destination].append(source)
 
     def print_adj_list(self):
         for vertex in self.vertices:
