@@ -83,11 +83,20 @@ if __name__ == "__main__":
     print(f"Enter space separated neighbors and their edge weights. Split multiple neighbors by comma:")
     for node in nodes:
         neighbor_list = list(map(str, input(f"For node '{node}' : ").strip().split(',')))
-        # print(neighbor_list)
-        for neighbor in neighbor_list:
-            adjacent_node, weight = neighbor.strip().split()
-            # print(adjacent_node, weight)
-            graph.add_edge(node, adjacent_node, int(weight))
+
+        # check if the input is empty
+        if '' in neighbor_list:
+            # check if the node already enlisted in the adjacency list
+            if len(graph.adj_list[node]) > 0:
+                continue  # if so, then data could be processed.
+            else:
+                raise Exception(f"Not enough data for adjacency list of {node}")  # o/w, raise an exception
+        else:
+            for neighbor in neighbor_list:
+                adjacent_node, weight = neighbor.strip().split()
+                # print(adjacent_node, weight)
+                graph.add_edge(node, adjacent_node, int(weight))
+            print(graph.adj_list)
 
     # print(f'Adjacency list is :')
     # graph.print_adj_list()
