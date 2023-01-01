@@ -8,6 +8,8 @@ def is_in_range(tuple_to_check, range_tuple):
 
 
 def interval_partitioning(list_of_intervals):
+    if len(list_of_intervals) == 0:
+        raise ValueError("List of intervals cannot be empty")
     # ascending sort the interval_list by starting point using the sorted functions
     sorted_intervals = sorted(list_of_intervals, key=lambda x: x[0])
 
@@ -40,15 +42,26 @@ def interval_partitioning(list_of_intervals):
 
 
 def print_partitions(min_partitions):
-    print(f"There are minimum {len(min_partitions)} partitions: ")
+    print(f"Minimum {len(min_partitions)} partition(s) required: ")
     for partition, intervals in min_partitions.items():
         print(f"Partition {partition}: {intervals}")
     print()
 
 
-interval_list = [(8, 13), (6, 9), (11, 14), (2, 7), (1, 7), (12, 20), (7, 13), (13, 20)]
-minimum_partitions = interval_partitioning(interval_list)
-print_partitions(minimum_partitions)
+# Uncomment the following lines to test the code by direct tuple input
+# interval_list = [(8, 13), (6, 9), (11, 14), (2, 7), (1, 7), (12, 20), (7, 13), (13, 20)]
+# minimum_partitions = interval_partitioning(interval_list)
+# print_partitions(minimum_partitions)
+#
+# interval_list2 = [(8, 12), (6, 9), (11, 14), (2, 7), (1, 7), (12, 20), (7, 12), (13, 19)]
+# print_partitions(interval_partitioning(interval_list2))
 
-interval_list2 = [(8, 12), (6, 9), (11, 14), (2, 7), (1, 7), (12, 20), (7, 12), (13, 19)]
-print_partitions(interval_partitioning(interval_list2))
+
+# take input from the user and convert it to a list of tuples
+interval_list = []
+number_of_intervals = int(input("Enter the number of intervals: "))
+print("Enter the intervals in the format: start end")
+for i in range(number_of_intervals):
+    interval = input(f"Enter interval {i + 1}: ").split()
+    interval_list.append((int(interval[0]), int(interval[1])))
+print_partitions(interval_partitioning(interval_list))
